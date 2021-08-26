@@ -15,7 +15,7 @@ import (
 const Endpoint = "/coins"
 
 type HandlerInterface interface {
-	SetupRoutes(server *echo.Echo)
+	SetupRoutes(server *echo.Echo, prefix string)
 	GetCoinsList(c echo.Context) error
 }
 
@@ -33,8 +33,8 @@ func NewHandler(ctn di.Container) HandlerInterface {
 }
 
 // SetupRoutes registers endpoints within given Echo server.
-func (h *Handler) SetupRoutes(server *echo.Echo) {
-	server.GET(Endpoint, h.GetCoinsList)
+func (h *Handler) SetupRoutes(server *echo.Echo, prefix string) {
+	server.GET(prefix+Endpoint, h.GetCoinsList)
 }
 
 // GetCoinsList returns list of supported coins. Depends on TrustWallet.

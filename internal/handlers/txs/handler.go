@@ -16,7 +16,7 @@ const (
 )
 
 type HandlerInterface interface {
-	SetupRoutes(server *echo.Echo)
+	SetupRoutes(server *echo.Echo, prefix string)
 	SignTransaction(c echo.Context) error
 }
 
@@ -34,8 +34,8 @@ func NewHandler(ctn di.Container) HandlerInterface {
 }
 
 // SetupRoutes registers its endpoints within given Echo server.
-func (h *Handler) SetupRoutes(server *echo.Echo) {
-	server.POST(EndpointSign, h.SignTransaction)
+func (h *Handler) SetupRoutes(server *echo.Echo, prefix string) {
+	server.POST(prefix+EndpointSign, h.SignTransaction)
 }
 
 // SignTransaction returns signed transaction. Depends on TrustWallet.

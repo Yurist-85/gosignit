@@ -36,8 +36,9 @@ func NewHandler(ctn di.Container) HandlerInterface {
 	// CORS middleware
 	api.server.Use(middleware.CORSWithConfig(api.getCORSConfig()))
 	// Setup routes
-	api.coins.SetupRoutes(api.server)
-	api.txs.SetupRoutes(api.server)
+	prefix := "/api/v1"
+	api.coins.SetupRoutes(api.server, prefix)
+	api.txs.SetupRoutes(api.server, prefix)
 	// TODO Swagger route
 	//api.server.GET(PathPublicSwagger, echoutils.SwaggerHandler(echoutils.SwaggerConfig{DocsPath: "/docs"}))
 
