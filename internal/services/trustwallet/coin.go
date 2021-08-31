@@ -8,6 +8,7 @@ package trustwallet
 // #include <TrustWalletCore/TWHDVersion.h>
 // #include <TrustWalletCore/TWPublicKeyType.h>
 // #include <TrustWalletCore/TWHRP.h>
+// #include <TrustWalletCore/TWCoinType.h>
 // #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 import "C"
 import (
@@ -120,6 +121,16 @@ func CoinTypeByIdString(id string) (*uint32, error) {
 	return &coin.CoinType, nil
 }
 
+// BlockchainByIdString returns Blockchain for a given id string.
+func BlockchainByIdString(id string) (*uint32, error) {
+	coin, err := CoinInfoByIdString(id)
+	if err != nil {
+		return nil, errors.Wrap(err, "get coin info by id")
+	}
+
+	return &coin.Blockchain, nil
+}
+
 // CoinInfoByIdString returns CoinInfo for a given id string.
 func CoinInfoByIdString(id string) (*CoinInfo, error) {
 	var coin CoinInfo
@@ -144,7 +155,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/bitcoin/transaction/",
 			"https://blockchair.com/bitcoin/address/",
-			0,
+			C.TWCoinTypeBitcoin,
 		}
 	case "litecoin":
 		coin = CoinInfo{
@@ -165,7 +176,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/litecoin/transaction/",
 			"https://blockchair.com/litecoin/address/",
-			2,
+			C.TWCoinTypeLitecoin,
 		}
 	case "doge":
 		coin = CoinInfo{
@@ -186,7 +197,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/dogecoin/transaction/",
 			"https://blockchair.com/dogecoin/address/",
-			3,
+			C.TWCoinTypeDogecoin,
 		}
 	case "dash":
 		coin = CoinInfo{
@@ -207,7 +218,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/dash/transaction/",
 			"https://blockchair.com/dash/address/",
-			5,
+			C.TWCoinTypeDash,
 		}
 	case "viacoin":
 		coin = CoinInfo{
@@ -228,7 +239,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://explorer.viacoin.org/tx/",
 			"https://explorer.viacoin.org/address/",
-			14,
+			C.TWCoinTypeViacoin,
 		}
 	case "groestlcoin":
 		coin = CoinInfo{
@@ -249,7 +260,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/groestlcoin/transaction/",
 			"https://blockchair.com/groestlcoin/address/",
-			17,
+			C.TWCoinTypeGroestlcoin,
 		}
 	case "digibyte":
 		coin = CoinInfo{
@@ -270,7 +281,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://digiexplorer.info/tx/",
 			"https://digiexplorer.info/address/",
-			20,
+			C.TWCoinTypeDigiByte,
 		}
 	case "monacoin":
 		coin = CoinInfo{
@@ -291,7 +302,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockbook.electrum-mona.org/tx/",
 			"https://blockbook.electrum-mona.org/address/",
-			22,
+			C.TWCoinTypeMonacoin,
 		}
 	case "decred":
 		coin = CoinInfo{
@@ -312,7 +323,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://dcrdata.decred.org/tx/",
 			"https://dcrdata.decred.org/address/",
-			42,
+			C.TWCoinTypeDecred,
 		}
 	case "ethereum":
 		coin = CoinInfo{
@@ -333,7 +344,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://etherscan.io/tx/",
 			"https://etherscan.io/address/",
-			60,
+			C.TWCoinTypeEthereum,
 		}
 	case "classic":
 		coin = CoinInfo{
@@ -354,7 +365,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://blockscout.com/etc/mainnet/tx/",
 			"https://blockscout.com/etc/mainnet/address/",
-			61,
+			C.TWCoinTypeEthereumClassic,
 		}
 	case "icon":
 		coin = CoinInfo{
@@ -375,7 +386,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://tracker.icon.foundation/transaction/",
 			"https://tracker.icon.foundation/address/",
-			74,
+			C.TWCoinTypeICON,
 		}
 	case "cosmos":
 		coin = CoinInfo{
@@ -396,7 +407,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://www.mintscan.io/txs/",
 			"https://www.mintscan.io/account/",
-			118,
+			C.TWCoinTypeCosmos,
 		}
 	case "zcash":
 		coin = CoinInfo{
@@ -417,7 +428,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/zcash/transaction/",
 			"https://blockchair.com/zcash/address/",
-			133,
+			C.TWCoinTypeZcash,
 		}
 	case "zcoin":
 		coin = CoinInfo{
@@ -438,7 +449,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://explorer.firo.org/tx/",
 			"https://explorer.firo.org/address/",
-			136,
+			C.TWCoinTypeZcoin,
 		}
 	case "ripple":
 		coin = CoinInfo{
@@ -459,7 +470,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://bithomp.com/explorer/",
 			"https://bithomp.com/explorer/",
-			144,
+			C.TWCoinTypeXRP,
 		}
 	case "bitcoincash":
 		coin = CoinInfo{
@@ -480,7 +491,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://blockchair.com/bitcoin-cash/transaction/",
 			"https://blockchair.com/bitcoin-cash/address/",
-			145,
+			C.TWCoinTypeBitcoinCash,
 		}
 	case "stellar":
 		coin = CoinInfo{
@@ -501,7 +512,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			7,
 			"https://blockchair.com/stellar/transaction/",
 			"https://blockchair.com/stellar/account/",
-			148,
+			C.TWCoinTypeStellar,
 		}
 	case "bitcoingold":
 		coin = CoinInfo{
@@ -522,7 +533,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://explorer.bitcoingold.org/insight/tx/",
 			"https://explorer.bitcoingold.org/insight/address/",
-			156,
+			C.TWCoinTypeBitcoinGold,
 		}
 	case "nano":
 		coin = CoinInfo{
@@ -543,7 +554,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			30,
 			"https://nanocrawler.cc/explorer/block/",
 			"https://nanocrawler.cc/explorer/account/",
-			165,
+			C.TWCoinTypeNano,
 		}
 	case "ravencoin":
 		coin = CoinInfo{
@@ -564,7 +575,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://ravencoin.network/tx/",
 			"https://ravencoin.network/address/",
-			175,
+			C.TWCoinTypeRavencoin,
 		}
 	case "poa":
 		coin = CoinInfo{
@@ -585,7 +596,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://blockscout.com/poa/core/tx/",
 			"https://blockscout.com/poa/core/address/",
-			178,
+			C.TWCoinTypePOANetwork,
 		}
 	case "eos":
 		coin = CoinInfo{
@@ -606,7 +617,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			4,
 			"https://bloks.io/transaction/",
 			"https://bloks.io/account/",
-			194,
+			C.TWCoinTypeEOS,
 		}
 	case "tron":
 		coin = CoinInfo{
@@ -627,7 +638,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://tronscan.org/#/transaction/",
 			"https://tronscan.org/#/address/",
-			195,
+			C.TWCoinTypeTron,
 		}
 	case "fio":
 		coin = CoinInfo{
@@ -648,7 +659,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			9,
 			"https://explorer.fioprotocol.io/transaction/",
 			"https://explorer.fioprotocol.io/account/",
-			235,
+			C.TWCoinTypeFIO,
 		}
 	case "nimiq":
 		coin = CoinInfo{
@@ -669,7 +680,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			5,
 			"https://nimiq.watch/#",
 			"https://nimiq.watch/#",
-			242,
+			C.TWCoinTypeNimiq,
 		}
 	case "algorand":
 		coin = CoinInfo{
@@ -690,7 +701,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://algoexplorer.io/tx/",
 			"https://algoexplorer.io/address/",
-			283,
+			C.TWCoinTypeAlgorand,
 		}
 	case "iotex":
 		coin = CoinInfo{
@@ -711,7 +722,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://iotexscan.io/action/",
 			"https://iotexscan.io/address/",
-			304,
+			C.TWCoinTypeIoTeX,
 		}
 	case "zilliqa":
 		coin = CoinInfo{
@@ -732,7 +743,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			12,
 			"https://viewblock.io/zilliqa/tx/",
 			"https://viewblock.io/zilliqa/address/",
-			313,
+			C.TWCoinTypeZilliqa,
 		}
 	case "terra":
 		coin = CoinInfo{
@@ -753,7 +764,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://terra.stake.id/#/tx/",
 			"https://terra.stake.id/#/address/",
-			330,
+			C.TWCoinTypeTerra,
 		}
 	case "polkadot":
 		coin = CoinInfo{
@@ -774,7 +785,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			10,
 			"https://polkadot.subscan.io/extrinsic/",
 			"https://polkadot.subscan.io/account/",
-			354,
+			C.TWCoinTypePolkadot,
 		}
 	case "near":
 		coin = CoinInfo{
@@ -795,7 +806,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			24,
 			"https://explorer.near.org/transactions/",
 			"https://explorer.near.org/accounts/",
-			397,
+			C.TWCoinTypeNEAR,
 		}
 	case "aion":
 		coin = CoinInfo{
@@ -816,7 +827,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://mainnet.aion.network/#/transaction/",
 			"https://mainnet.aion.network/#/account/",
-			425,
+			C.TWCoinTypeAion,
 		}
 	case "kusama":
 		coin = CoinInfo{
@@ -837,7 +848,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			12,
 			"https://kusama.subscan.io/extrinsic/",
 			"https://kusama.subscan.io/account/",
-			434,
+			C.TWCoinTypeKusama,
 		}
 	case "aeternity":
 		coin = CoinInfo{
@@ -858,7 +869,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.aepps.com/transactions/",
 			"https://explorer.aepps.com/account/transactions/",
-			457,
+			C.TWCoinTypeAeternity,
 		}
 	case "kava":
 		coin = CoinInfo{
@@ -879,7 +890,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://kava.mintscan.io/txs/",
 			"https://kava.mintscan.io/account/",
-			459,
+			C.TWCoinTypeKava,
 		}
 	case "filecoin":
 		coin = CoinInfo{
@@ -900,7 +911,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://filfox.info/en/message/",
 			"https://filfox.info/en/address/",
-			461,
+			C.TWCoinTypeFilecoin,
 		}
 	case "oasis":
 		coin = CoinInfo{
@@ -921,7 +932,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			9,
 			"https://oasisscan.com/transactions/",
 			"https://oasisscan.com/accounts/detail/",
-			474,
+			C.TWCoinTypeOasis,
 		}
 	case "bluzelle":
 		coin = CoinInfo{
@@ -942,7 +953,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://bigdipper.net.bluzelle.com/transactions/",
 			"https://bigdipper.net.bluzelle.com/account/",
-			483,
+			C.TWCoinTypeBluzelle,
 		}
 	case "band":
 		coin = CoinInfo{
@@ -963,7 +974,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://scan-wenchang-testnet2.bandchain.org//tx/",
 			"https://scan-wenchang-testnet2.bandchain.org//account/",
-			494,
+			C.TWCoinTypeBandChain,
 		}
 	case "theta":
 		coin = CoinInfo{
@@ -984,7 +995,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.thetatoken.org/txs/",
 			"https://explorer.thetatoken.org/account/",
-			500,
+			C.TWCoinTypeTheta,
 		}
 	case "solana":
 		coin = CoinInfo{
@@ -1005,7 +1016,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			9,
 			"https://solscan.io/tx/",
 			"https://solscan.io/account/",
-			501,
+			C.TWCoinTypeSolana,
 		}
 	case "elrond":
 		coin = CoinInfo{
@@ -1026,7 +1037,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.elrond.com/transactions/",
 			"https://explorer.elrond.com/address/",
-			508,
+			C.TWCoinTypeElrond,
 		}
 	case "binance":
 		coin = CoinInfo{
@@ -1047,7 +1058,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://explorer.binance.org/tx/",
 			"https://explorer.binance.org/address/",
-			714,
+			C.TWCoinTypeBinance,
 		}
 	case "vechain":
 		coin = CoinInfo{
@@ -1068,7 +1079,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explore.vechain.org/transactions/",
 			"https://explore.vechain.org/accounts/",
-			818,
+			C.TWCoinTypeVeChain,
 		}
 	case "callisto":
 		coin = CoinInfo{
@@ -1089,7 +1100,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer2.callisto.network/tx/",
 			"https://explorer2.callisto.network/addr/",
-			820,
+			C.TWCoinTypeCallisto,
 		}
 	case "neo":
 		coin = CoinInfo{
@@ -1110,7 +1121,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://neoscan.io/transaction/",
 			"https://neoscan.io/address/",
-			888,
+			C.TWCoinTypeNEO,
 		}
 	case "tomochain":
 		coin = CoinInfo{
@@ -1131,7 +1142,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://scan.tomochain.com/txs/",
 			"https://scan.tomochain.com/address/",
-			889,
+			C.TWCoinTypeTomoChain,
 		}
 	case "thorchain":
 		coin = CoinInfo{
@@ -1152,7 +1163,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://viewblock.io/thorchain/tx/",
 			"https://viewblock.io/thorchain/address/",
-			931,
+			C.TWCoinTypeTHORChain,
 		}
 	case "polygon":
 		coin = CoinInfo{
@@ -1173,7 +1184,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://polygonscan.com/tx/",
 			"https://polygonscan.com/address/",
-			966,
+			C.TWCoinTypePolygon,
 		}
 	case "thundertoken":
 		coin = CoinInfo{
@@ -1194,7 +1205,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://scan.thundercore.com/transactions/",
 			"https://scan.thundercore.com/address/",
-			1001,
+			C.TWCoinTypeThunderToken,
 		}
 	case "harmony":
 		coin = CoinInfo{
@@ -1215,7 +1226,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.harmony.one/#/tx/",
 			"https://explorer.harmony.one/#/address/",
-			1023,
+			C.TWCoinTypeHarmony,
 		}
 	case "ontology":
 		coin = CoinInfo{
@@ -1236,7 +1247,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			0,
 			"https://explorer.ont.io/transaction/",
 			"https://explorer.ont.io/address/",
-			1024,
+			C.TWCoinTypeOntology,
 		}
 	case "tezos":
 		coin = CoinInfo{
@@ -1257,7 +1268,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://tzstats.com/",
 			"https://tzstats.com/",
-			1729,
+			C.TWCoinTypeTezos,
 		}
 	case "cardano":
 		coin = CoinInfo{
@@ -1278,7 +1289,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			6,
 			"https://shelleyexplorer.cardano.org/tx/",
 			"https://shelleyexplorer.cardano.org/address/",
-			1815,
+			C.TWCoinTypeCardano,
 		}
 	case "kin":
 		coin = CoinInfo{
@@ -1299,7 +1310,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			5,
 			"https://www.kin.org/blockchainInfoPage/?&dataType=public&header=Transaction&id=",
 			"https://www.kin.org/blockchainAccount/?&dataType=public&header=accountID&id=",
-			2017,
+			C.TWCoinTypeKin,
 		}
 	case "qtum":
 		coin = CoinInfo{
@@ -1320,7 +1331,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://qtum.info/tx/",
 			"https://qtum.info/address/",
-			2301,
+			C.TWCoinTypeQtum,
 		}
 	case "nebulas":
 		coin = CoinInfo{
@@ -1341,7 +1352,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.nebulas.io/#/tx/",
 			"https://explorer.nebulas.io/#/address/",
-			2718,
+			C.TWCoinTypeNebulas,
 		}
 	case "gochain":
 		coin = CoinInfo{
@@ -1362,7 +1373,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.gochain.io/tx/",
 			"https://explorer.gochain.io/addr/",
-			6060,
+			C.TWCoinTypeGoChain,
 		}
 	case "nuls":
 		coin = CoinInfo{
@@ -1383,7 +1394,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://nulscan.io/transaction/info?hash=",
 			"https://nulscan.io/address/info?address=",
-			8964,
+			C.TWCoinTypeNULS,
 		}
 	case "zelcash":
 		coin = CoinInfo{
@@ -1404,7 +1415,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://explorer.runonflux.io/tx/",
 			"https://explorer.runonflux.io/address/",
-			19167,
+			C.TWCoinTypeZelcash,
 		}
 	case "wanchain":
 		coin = CoinInfo{
@@ -1425,7 +1436,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://www.wanscan.org/tx/",
 			"https://www.wanscan.org/address/",
-			5718350,
+			C.TWCoinTypeWanchain,
 		}
 	case "waves":
 		coin = CoinInfo{
@@ -1446,7 +1457,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			8,
 			"https://wavesexplorer.com/tx/",
 			"https://wavesexplorer.com/address/",
-			5741564,
+			C.TWCoinTypeWaves,
 		}
 	case "optimism":
 		coin = CoinInfo{
@@ -1467,7 +1478,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://optimistic.etherscan.io/tx/",
 			"https://optimistic.etherscan.io/address/",
-			60,
+			C.TWCoinTypeOptimism,
 		}
 	case "heco":
 		coin = CoinInfo{
@@ -1488,7 +1499,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://hecoinfo.com/tx/",
 			"https://hecoinfo.com/address/",
-			553,
+			C.TWCoinTypeECOChain,
 		}
 	case "bsc":
 		coin = CoinInfo{
@@ -1509,7 +1520,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://bscscan.com/tx/",
 			"https://bscscan.com/address/",
-			714,
+			C.TWCoinTypeSmartChainLegacy,
 		}
 	case "arbitrum":
 		coin = CoinInfo{
@@ -1530,7 +1541,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://explorer.offchainlabs.com/tx/",
 			"https://explorer.offchainlabs.com/address/",
-			60,
+			C.TWCoinTypeArbitrum,
 		}
 	case "smartchain":
 		coin = CoinInfo{
@@ -1551,7 +1562,7 @@ func CoinInfoByIdString(id string) (*CoinInfo, error) {
 			18,
 			"https://bscscan.com/tx/",
 			"https://bscscan.com/address/",
-			714,
+			C.TWCoinTypeSmartChain,
 		}
 	default:
 		return nil, errors.New("coin not supported")

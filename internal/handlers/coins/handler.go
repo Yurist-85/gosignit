@@ -1,5 +1,9 @@
 package coins
 
+// #cgo CFLAGS: -I../../../lib/trustwallet/include
+// #cgo LDFLAGS: -L../../../lib/trustwallet/build -L../../../lib/trustwallet/build/trezor-crypto -lTrustWalletCore -lprotobuf -lTrezorCrypto -lc++ -lm
+// #include <TrustWalletCore/TWBlockchain.h>
+import "C"
 import (
 	"net/http"
 
@@ -40,7 +44,7 @@ func (h *Handler) SetupRoutes(server *echo.Echo, prefix string) {
 // GetCoinsList returns list of supported coins. Depends on TrustWallet.
 func (h *Handler) GetCoinsList(c echo.Context) error {
 	cList := trustwallet.GetCoins()
-	coins := make([]*trustwallet.CoinInfo, len(cList))
+	var coins []*trustwallet.CoinInfo
 
 	for i := 0; i < len(cList); i++ {
 		coin, err := trustwallet.CoinInfoByIdString(cList[i])
@@ -49,7 +53,12 @@ func (h *Handler) GetCoinsList(c echo.Context) error {
 			continue
 		}
 
-		coins[i] = coin
+		if coin.Blockchain != C.TWBlockchainBitcoin && coin.Blockchain != C.TWBlockchainEthereum {
+			logrus.Debugf("not bitcoin or ethereum blockchain, skip: %v", coin.Name)
+			continue
+		}
+
+		coins = append(coins, coin)
 	}
 
 	return c.JSON(http.StatusOK, &coins)
