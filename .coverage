@@ -1,0 +1,117 @@
+GOROOT=/usr/local/Cellar/go/1.16.6/libexec #gosetup
+GOPATH=/Volumes/dev/_go #gosetup
+/usr/local/Cellar/go/1.16.6/libexec/bin/go test -json ./... -covermode=atomic -coverpkg=../../../../demo/... -coverprofile /Users/Yurist/Library/Caches/JetBrains/GoLand2021.1/coverage/demo$go_test_trustwallet.out
+=== RUN   TestCoin
+=== PAUSE TestCoin
+=== CONT  TestCoin
+--- PASS: TestCoin (0.00s)
+=== RUN   TestCoin/TestCoinInfoByIdString_fail
+    --- PASS: TestCoin/TestCoinInfoByIdString_fail (0.00s)
+=== RUN   TestCoin/TestCoinInfoByIdString_ok
+    --- PASS: TestCoin/TestCoinInfoByIdString_ok (0.00s)
+=== RUN   TestCoin/TestCoinTypeByIdString_fail
+    --- PASS: TestCoin/TestCoinTypeByIdString_fail (0.00s)
+=== RUN   TestCoin/TestCoinTypeByIdString_ok
+    --- PASS: TestCoin/TestCoinTypeByIdString_ok (0.00s)
+=== RUN   TestCoin/TestGetCoins_ok
+    --- PASS: TestCoin/TestGetCoins_ok (0.00s)
+PASS
+coverage: 4.2% of statements in ../../../../demo/...
+ok  	github.com/yurist-85/gosignit/internal/services/trustwallet/coins	0.623s	coverage: 4.2% of statements in ../../../../demo/...
+=== RUN   TestSigner
+=== PAUSE TestSigner
+=== CONT  TestSigner
+--- PASS: TestSigner (0.03s)
+=== RUN   TestSigner/TestSigner
+    --- PASS: TestSigner/TestSigner (0.03s)
+=== RUN   TestSigner/TestSigner/TestGeneratePrivateKeyBitcoin
+        --- PASS: TestSigner/TestSigner/TestGeneratePrivateKeyBitcoin (0.00s)
+=== RUN   TestSigner/TestSigner/TestGeneratePrivateKeyEthereum
+        --- PASS: TestSigner/TestSigner/TestGeneratePrivateKeyEthereum (0.00s)
+=== RUN   TestSigner/TestSigner/TestSignBitcoin
+        --- PASS: TestSigner/TestSigner/TestSignBitcoin (0.01s)
+PASS
+coverage: 5.7% of statements in ../../../../demo/...
+ok  	github.com/yurist-85/gosignit/internal/services/trustwallet	1.002s	coverage: 5.7% of statements in ../../../../demo/...
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/address	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/keys	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/aeternity	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/aion	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/algorand	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/binance	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/bitcoin	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/cosmos	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/decred	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/elrond	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/eos	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/ethereum	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/filecoin	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/fio	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/harmony	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/icon	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/iotex	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/nano	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/near	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/nebulas	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/neo	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/nimiq	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/nuls	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/oasis	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/ontology	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/polkadot	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/ripple	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/solana	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/stellar	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/tezos	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/theta	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/tron	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/vechain	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/waves	[no test files]
+?   	github.com/yurist-85/gosignit/internal/services/trustwallet/proto/zilliqa	[no test files]
+=== RUN   TestWallet
+=== PAUSE TestWallet
+=== CONT  TestWallet
+--- PASS: TestWallet (0.03s)
+=== RUN   TestWallet/TestMnemonicIsValid_fail
+    --- PASS: TestWallet/TestMnemonicIsValid_fail (0.00s)
+=== RUN   TestWallet/TestMnemonicIsValid_ok
+    --- PASS: TestWallet/TestMnemonicIsValid_ok (0.00s)
+=== RUN   TestWallet/TestWalletCreateWithMnemonic_fail
+    --- PASS: TestWallet/TestWalletCreateWithMnemonic_fail (0.01s)
+=== RUN   TestWallet/TestWalletCreateWithMnemonic_ok
+    --- PASS: TestWallet/TestWalletCreateWithMnemonic_ok (0.01s)
+=== RUN   TestWallet/TestWalletDelete_ok
+    --- PASS: TestWallet/TestWalletDelete_ok (0.00s)
+=== RUN   TestWallet/TestWalletGetAddressForCoin_ok
+    --- PASS: TestWallet/TestWalletGetAddressForCoin_ok (0.01s)
+=== RUN   TestWallet/TestWalletGetKeyForCoin_ok
+    --- PASS: TestWallet/TestWalletGetKeyForCoin_ok (0.00s)
+PASS
+coverage: 4.4% of statements in ../../../../demo/...
+ok  	github.com/yurist-85/gosignit/internal/services/trustwallet/wallet	1.610s	coverage: 4.4% of statements in ../../../../demo/...
+=== RUN   TestData
+=== PAUSE TestData
+=== CONT  TestData
+--- PASS: TestData (0.00s)
+=== RUN   TestData/TestTWDataCreateWithGoBytes_ok
+    --- PASS: TestData/TestTWDataCreateWithGoBytes_ok (0.00s)
+=== RUN   TestData/TestTWDataGoBytes_ok
+    --- PASS: TestData/TestTWDataGoBytes_ok (0.00s)
+=== RUN   TestData/TestTWDataHexString_ok
+    --- PASS: TestData/TestTWDataHexString_ok (0.00s)
+=== RUN   TestString
+=== PAUSE TestString
+=== CONT  TestString
+--- PASS: TestString (0.00s)
+=== RUN   TestString/TestTWStringCreateWithGoString_ok
+    --- PASS: TestString/TestTWStringCreateWithGoString_ok (0.00s)
+=== RUN   TestString/TestTWStringGoString_fail
+    --- PASS: TestString/TestTWStringGoString_fail (0.00s)
+=== RUN   TestString/TestTWStringGoString_ok
+    --- PASS: TestString/TestTWStringGoString_ok (0.00s)
+PASS
+coverage: 4.2% of statements in ../../../../demo/...
+ok  	github.com/yurist-85/gosignit/internal/services/trustwallet/types	2.058s	coverage: 4.2% of statements in ../../../../demo/...
+
+Process finished with the exit code 0
