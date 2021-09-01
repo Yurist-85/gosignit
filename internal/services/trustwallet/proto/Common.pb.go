@@ -7,6 +7,8 @@
 package proto
 
 import (
+	"encoding/hex"
+	"encoding/json"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -189,4 +191,29 @@ func file_Common_proto_init() {
 	file_Common_proto_rawDesc = nil
 	file_Common_proto_goTypes = nil
 	file_Common_proto_depIdxs = nil
+}
+
+type HexBytes []byte
+
+func (b HexBytes) MarshalJSON() ([]byte, error) {
+	str := hex.EncodeToString(b)
+
+	return json.Marshal(str)
+}
+
+func (b *HexBytes) UnmarshalJSON(input []byte) error {
+	var str string
+	err := json.Unmarshal(input, &str)
+	if err != nil {
+		return err
+	}
+
+	dec, err := hex.DecodeString(str)
+	if err != nil {
+		return err
+	}
+
+	*b = HexBytes(dec)
+
+	return nil
 }

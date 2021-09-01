@@ -7,7 +7,7 @@
 package fio
 
 import (
-	proto "github.com/yurist-85/gosignit/pkg/proto"
+	proto "github.com/yurist-85/gosignit/internal/services/trustwallet/proto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

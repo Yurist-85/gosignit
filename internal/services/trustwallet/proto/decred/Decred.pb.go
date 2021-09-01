@@ -7,8 +7,8 @@
 package decred
 
 import (
-	proto "github.com/yurist-85/gosignit/pkg/proto"
-	bitcoin "github.com/yurist-85/gosignit/pkg/proto/bitcoin"
+	proto "github.com/yurist-85/gosignit/internal/services/trustwallet/proto"
+	bitcoin "github.com/yurist-85/gosignit/internal/services/trustwallet/proto/bitcoin"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
