@@ -9,5 +9,7 @@ import (
 const Endpoint = "/ping"
 
 func Handler(c echo.Context) error {
-	return c.JSON(http.StatusOK, map[string]interface{}{})
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"ping": "pong",
+	})
 }
