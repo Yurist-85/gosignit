@@ -16,6 +16,7 @@ import (
 
 	"github.com/yurist-85/gosignit/internal/services/clock"
 	"github.com/yurist-85/gosignit/internal/services/trustwallet"
+	"github.com/yurist-85/gosignit/internal/services/trustwallet/coins"
 	"github.com/yurist-85/gosignit/pkg/types"
 )
 
@@ -31,14 +32,14 @@ type HandlerInterface interface {
 
 type Handler struct {
 	clock clockwork.Clock
-	tw trustwallet.SignerInterface
+	tw trustwallet.TrustWallet
 }
 
 // NewHandler creates and returns new instance of Handler.
 func NewHandler(ctn di.Container) HandlerInterface {
 	h := &Handler{
 		clock: ctn.Get(clock.DefinitionName).(clockwork.Clock),
-		tw: ctn.Get(trustwallet.DefinitionName).(trustwallet.SignerInterface),
+		tw: ctn.Get(trustwallet.DefinitionName).(trustwallet.TrustWallet),
 	}
 
 	return h
@@ -58,7 +59,7 @@ func (h *Handler) SignTransaction(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, types.ErrBadRequestCoinRequired)
 	}
 
-	blockchain, err := trustwallet.BlockchainByIdString(gate)
+	blockchain, err := coins.BlockchainByIdString(gate)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, types.ErrBadRequestUnknownCoin)
 	}
