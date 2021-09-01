@@ -1,7 +1,7 @@
-package trustwallet
+package coins
 
-// #cgo CFLAGS: -I../../../lib/trustwallet/include
-// #cgo LDFLAGS: -L../../../lib/trustwallet/build -L../../../lib/trustwallet/build/trezor-crypto -lTrustWalletCore -lprotobuf -lTrezorCrypto -lc++ -lm
+// #cgo CFLAGS: -I../../../../lib/trustwallet/include
+// #cgo LDFLAGS: -L../../../../lib/trustwallet/build -L../../../../lib/trustwallet/build/trezor-crypto -lTrustWalletCore -lprotobuf -lTrezorCrypto -lc++ -lm
 // #include <TrustWalletCore/TWBlockchain.h>
 // #include <TrustWalletCore/TWPurpose.h>
 // #include <TrustWalletCore/TWCurve.h>

@@ -1,4 +1,4 @@
-package trustwallet
+package coins
 
 import (
 	"testing"

@@ -1,10 +1,12 @@
-package trustwallet
+package wallet
 
 import (
 	"testing"
 	"unsafe"
 
 	"github.com/stretchr/testify/suite"
+
+	"github.com/yurist-85/gosignit/internal/services/trustwallet/coins"
 )
 
 type TestWalletSuite struct {
@@ -64,7 +66,7 @@ func (t *TestWalletSuite) TestWalletGetKeyForCoin_ok() {
 	t.Require().NotNil(wallet)
 	t.Require().NotEqual(unsafe.Pointer(nil), wallet)
 
-	coin, err := CoinInfoByIdString("bitcoin")
+	coin, err := coins.CoinInfoByIdString("bitcoin")
 	t.Require().NoError(err)
 	t.Require().NotNil(coin)
 
@@ -85,7 +87,7 @@ func (t *TestWalletSuite) TestWalletGetAddressForCoin_ok() {
 	}
 
 	for _, c := range cases {
-		coin, err := CoinInfoByIdString(c.coin)
+		coin, err := coins.CoinInfoByIdString(c.coin)
 		t.Require().NoError(err)
 		t.Require().NotNil(coin)
 

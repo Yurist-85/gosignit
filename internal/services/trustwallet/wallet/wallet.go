@@ -1,7 +1,7 @@
-package trustwallet
+package wallet
 
-// #cgo CFLAGS: -I../../../lib/trustwallet/include
-// #cgo LDFLAGS: -L../../../lib/trustwallet/build -L../../../lib/trustwallet/build/trezor-crypto -lTrustWalletCore -lprotobuf -lTrezorCrypto -lc++ -lm
+// #cgo CFLAGS: -I../../../../lib/trustwallet/include
+// #cgo LDFLAGS: -L../../../../lib/trustwallet/build -L../../../../lib/trustwallet/build/trezor-crypto -lTrustWalletCore -lprotobuf -lTrezorCrypto -lc++ -lm
 // #include <TrustWalletCore/TWMnemonic.h>
 // #include <TrustWalletCore/TWHDWallet.h>
 import "C"

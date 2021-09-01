@@ -13,7 +13,7 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"github.com/yurist-85/gosignit/internal/services/clock"
-	"github.com/yurist-85/gosignit/internal/services/trustwallet"
+	"github.com/yurist-85/gosignit/internal/services/trustwallet/coins"
 )
 
 const Endpoint = "/coins"
@@ -43,13 +43,13 @@ func (h *Handler) SetupRoutes(server *echo.Echo, prefix string) {
 
 // GetCoinsList returns list of supported coins. Depends on TrustWallet.
 func (h *Handler) GetCoinsList(c echo.Context) error {
-	cList := trustwallet.GetCoins()
-	var coins []*trustwallet.CoinInfo
+	coinList := coins.GetCoins()
+	var infoList []*coins.CoinInfo
 
-	for i := 0; i < len(cList); i++ {
-		coin, err := trustwallet.CoinInfoByIdString(cList[i])
+	for i := 0; i < len(coinList); i++ {
+		coin, err := coins.CoinInfoByIdString(coinList[i])
 		if err != nil {
-			logrus.Errorf("unknown coin: %s", cList[i])
+			logrus.Errorf("unknown coin: %s", coinList[i])
 			continue
 		}
 
@@ -58,8 +58,8 @@ func (h *Handler) GetCoinsList(c echo.Context) error {
 			continue
 		}
 
-		coins = append(coins, coin)
+		infoList = append(infoList, coin)
 	}
 
-	return c.JSON(http.StatusOK, &coins)
+	return c.JSON(http.StatusOK, &infoList)
 }
