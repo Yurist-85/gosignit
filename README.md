@@ -105,26 +105,24 @@ Content-Type: application/json
       "version": 1,
       "inputs": [
         {
-          "previousOutput": {
-            "hash": "//f3iBqAma+mlA1C0ef2NivsOBceo+30M1QdtOStlp8="
-          },
+          "hash": "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f",
           "sequence": 4294967295
         }
       ],
       "outputs": [
         {
           "value": 1020304,
-          "script": "dqkUdpvf+WoC+RNaHRm3SdtqeP4H3JCIrA=="
+          "script": "76a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
         },
         {
           "value": 623979549,
-          "script": "dqkUngibaIngMtRuO5FaM5Lt/WFvscSIrA=="
+          "script": "76a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac"
         }
       ]
     },
-    "encoded": "AQAAAAABAf/394gagJmvppQNQtHn9jYr7DgXHqPt9DNUHbTkrZafAAAAAAD/////ApCRDwAAAAAAGXapFHab3/lqAvkTWh0Zt0nbanj+B9yQiKwdLDElAAAAABl2qRSeCJtoieAy1G47kVozku39YW+xxIisAkgwRQIhAKpaA2tEOJ14YWyvYgU/dVOI6kd55XHU3tiW8ZKapuxBAiA1FYj1e3NUB27HlLBSJ6JD6arLoeLrvUea3IaZXfBKdAEhA9+GNcM+rgKOINkSEg7hpzBMO7HkVOaWgrFvzx46MSj9AAAAAA==",
+    "encoded": "01000000000101fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000ffffffff0290910f00000000001976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac1d2c3125000000001976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac02483045022100aa5a036b44389d78616caf62053f755388ea4779e571d4ded896f1929aa6ec410220351588f57b7354076ec794b05227a243e9aacba1e2ebbd479adc86995df04a74012103df8635c33eae028e20d912120ee1a7304c3bb1e454e69682b16fcf1e3a3128fd00000000",
     "transaction_id": "aabc41f7c15071c1cd95e5fb10280fad5f52bff49353c932149b93f78e898e6f"
   }
 }
 ```
-## NOTE: Hash strings now base64-encoded. This behaviour is going to be changed asap.
+## NOTE: Bytes values (hashes, scripts, keys...) are HEX-encoded to strings.
