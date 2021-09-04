@@ -10,13 +10,14 @@ package trustwallet
 // #include <TrustWalletCore/TWString.h>
 import "C"
 import (
-	"github.com/yurist-85/gosignit/internal/services/trustwallet/coins"
 	"unsafe"
 
 	"github.com/sirupsen/logrus"
 
 	"github.com/yurist-85/gosignit/internal/config"
+	"github.com/yurist-85/gosignit/internal/services/trustwallet/coins"
 	"github.com/yurist-85/gosignit/internal/services/trustwallet/proto/bitcoin"
+	"github.com/yurist-85/gosignit/internal/services/trustwallet/proto/ethereum"
 	twtypes "github.com/yurist-85/gosignit/internal/services/trustwallet/types"
 	"github.com/yurist-85/gosignit/pkg/types"
 )
@@ -76,12 +77,12 @@ func (s *trustWallet) SignTransaction(in types.SigningRequest, coin string) (int
 		}
 
 		return nil, twtypes.ErrNonBitcoinSigningRequest
-		//case C.TWBlockchainEthereum:
-		//	if in, ok := in.(*types.EthereumSigningRequest); !ok {
-		//		return s.signEthereum(in, *coinType, pk)
-		//	}
-		//
-		//	return nil, twtypes.ErrNonEthereumSigningRequest
+	case C.TWBlockchainEthereum:
+		if in, ok := in.(*types.EthereumSigningRequest); ok {
+			return ethereum.SignTransaction(s.wallet, in, *coinType)
+		}
+
+		return nil, twtypes.ErrNonEthereumSigningRequest
 		//case C.TWBlockchainVechain:
 		//case C.TWBlockchainTron:
 		//case C.TWBlockchainIcon:
