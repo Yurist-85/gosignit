@@ -12,9 +12,10 @@ type SigningResponse interface {
 
 // CommonSigningResponse is common response struct. Contains original request and signed result.
 type CommonSigningResponse struct {
-	Gate   string         `json:"gate"`
-	Tx     SigningRequest `json:"tx"`
-	Signed interface{}    `json:"signed"`
+	Gate   string         `json:"gate,omitempty"`
+	Tx     SigningRequest `json:"tx,omitempty"`
+	Signed interface{}    `json:"signed,omitempty"`
+	Error  string         `json:"error,omitempty"`
 }
 
 func (r *CommonSigningResponse) GetSignedTransaction() interface{} {

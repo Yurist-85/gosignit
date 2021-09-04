@@ -108,16 +108,22 @@ func (h *Handler) SignTransaction(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, errors.Wrap(err, "bind request data"))
 	}
 
+	var resp types.CommonSigningResponse
+	status := http.StatusOK
+
 	signed, err := h.tw.SignTransaction(req, gate)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, errors.Wrap(err, "sign tx"))
+		status = http.StatusInternalServerError
+		resp = types.CommonSigningResponse{
+			Error: err.Error(),
+		}
+	} else {
+		resp = types.CommonSigningResponse{
+			Gate:   gate,
+			Tx:     req,
+			Signed: signed,
+		}
 	}
 
-	resp := types.CommonSigningResponse{
-		Gate:   gate,
-		Tx:     req,
-		Signed: signed,
-	}
-
-	return c.JSON(http.StatusOK, &resp)
+	return c.JSON(status, &resp)
 }
