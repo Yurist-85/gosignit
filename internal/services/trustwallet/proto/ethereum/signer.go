@@ -52,6 +52,11 @@ func SignTransaction(wallet unsafe.Pointer, req *types.EthereumSigningRequest, c
 		Transaction:           tx,
 	}
 
+	// All requests to smart-contracts require its address as target.
+	if req.TxType != "transfer" {
+		input.ToAddress = req.ContractAddress
+	}
+
 	inputBytes, err := proto.Marshal(&input)
 	if err != nil {
 		return nil, errors.Wrap(err, "proto.marshal signing input")
